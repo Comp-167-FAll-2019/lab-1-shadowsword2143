@@ -80,20 +80,18 @@ public class ContactsApp extends Application {
     }
 
     /**
+     * @param filename
      * @param args the command line arguments
      */
-    public static void main(String[] args) {
-        loadContacts(args[1]);
-        launch(args);
-    }
+
     
     public static void loadContacts(String filename) {
         contacts = new ArrayList();
-        
         ArrayList<String> names = new ArrayList();
         try {
+         
             Scanner contactReader = new Scanner(new File(filename));
-            
+         
             while(contactReader.hasNext()) {
                 String[] contactString = contactReader.nextLine().split(",");
                 Contact newContact = new Contact(contactString[0], contactString[1], contactString[2], contactString[3]);
@@ -106,6 +104,10 @@ public class ContactsApp extends Application {
         }
         
         contactNames = FXCollections.observableArrayList(names);
+    }
+       public static void main(String[] args) {
+        loadContacts(args[0]);
+        launch(args);
     }
     
 }
